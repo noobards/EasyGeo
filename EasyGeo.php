@@ -20,7 +20,12 @@ class EasyGeo
 		{
 			$this->showError("The library needs either cURL or file_get_contents to be enabled on the server. Both were found to be disabled. Please re-enable them and try again");
 		}
-
+		
+		if(strlen(trim($address) == 0)) // no address was passed by the user
+		{
+			$this->showError("No address found. Please enter the same for lookup.");
+		}
+		
 		$this->searchTerm = $address;		
 		$this->url = $this->generateGeocodeURL(urlencode($this->searchTerm));
 
